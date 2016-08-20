@@ -53,7 +53,9 @@ class OrderBlocks(ext.Extension):
         block_name = nodes.Name('_ext_ob_blknm', 'store')
 
         # For each block, add an "If" node checking if it matches the target.
+        # Also record the original "default" ordering of the blocks.
         blocks = []
+        block_names = []
         for node in parser.parse_statements(['name:endorderblocks'],
                                             drop_needle=True):
             if isinstance(node, nodes.Block):
@@ -63,5 +65,14 @@ class OrderBlocks(ext.Extension):
                         [nodes.Operand('eq', nodes.Const(node.name))]),
                     [node], []))
 
+                block_names.append(node.name)
+
         # Make a "For" node iterating over the given block selection.
-        return nodes.For(block_name, block_selection, blocks, [], None, False)
+        # If the block selection is undefined then use the original ordering.
+        return nodes.For(
+            block_name,
+            nodes.CondExpr(
+                nodes.Test(block_selection, 'defined', [], [], None, None),
+                block_selection,
+                nodes.Tuple([nodes.Const(x) for x in block_names], 'store')),
+            blocks, [], None, False)
