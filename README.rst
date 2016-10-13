@@ -47,7 +47,7 @@ This takes one argument, specifying the order in which to show the
 contained blocks.
 (Any non-block contents are ignored.)
 In this case this argument is given by the `article_order` parameter.
-When this is undefined, as it is here, the blocks are shown in their
+When this is undefined, as it is here, (or None) the blocks are shown in their
 original ordering.
 
 However there might also be some special kinds of articles, such as

@@ -67,12 +67,18 @@ class OrderBlocks(ext.Extension):
 
                 block_names.append(node.name)
 
-        # Make a "For" node iterating over the given block selection.
-        # If the block selection is undefined then use the original ordering.
+        # Make a "For" node iterating over the given block selection.  If the
+        # block selection is undefined or None then use the original ordering.
         return nodes.For(
             block_name,
             nodes.CondExpr(
-                nodes.Test(block_selection, 'defined', [], [], None, None),
+                nodes.And(
+                    nodes.Test(block_selection, 'defined',
+                               [], [], None, None),
+                    nodes.Not(
+                        nodes.Test(block_selection, 'none',
+                                   [], [], None, None)),
+                ),
                 block_selection,
                 nodes.Tuple([nodes.Const(x) for x in block_names], 'store')),
             blocks, [], None, False)

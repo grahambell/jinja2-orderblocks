@@ -35,6 +35,7 @@ class OrderBlockTestCase(TestCase):
             'e')
 
         self.assertEqual(template.render(), 'abcde')
+        self.assertEqual(template.render(blocks=None), 'abcde')
         self.assertEqual(template.render(blocks=('x', 'y', 'z')), 'abcde')
         self.assertEqual(template.render(blocks=('z', 'y', 'x')), 'adcbe')
         self.assertEqual(template.render(blocks=('z', 'x', 'y')), 'adbce')
