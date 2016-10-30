@@ -37,8 +37,8 @@ class OrderBlocks(ext.Extension):
     ...     '{% block one %}1{% endblock %}'
     ...     '{% block two %}2{% endblock %}'
     ...     '{% endorderblocks %}')
-    >>> template.render(block_order=['two', 'one'])
-    '21'
+    >>> print(template.render(block_order=['two', 'one']))
+    21
     """
 
     tags = set(['orderblocks'])
