@@ -7,7 +7,7 @@ with open('README.rst') as f:
 
 setup(
     name='jinja2_orderblocks',
-    version='0.0.0',
+    version='0.1.0',
     description='OrderBlocks Extension for Jinja2',
     long_description=long_description,
     author='Graham Bell',
