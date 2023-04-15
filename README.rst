@@ -77,6 +77,8 @@ they wish to see, and their ordering, via a request argument::
 
     app = Flask(__name__)
 
+    if 'extensions' not in app.jinja_options:
+        app.jinja_options['extensions'] = []
     app.jinja_options['extensions'].append(
         'jinja2_orderblocks.OrderBlocks')
 
