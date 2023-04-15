@@ -4,7 +4,7 @@ OrderBlocks Extension for Jinja2
 Introduction
 ------------
 
-This is an extension for the `Jinja2 <http://jinja.pocoo.org/>`_
+This is an extension for the `Jinja2 <https://palletsprojects.com/p/jinja/>`_
 template engine which allows you to select and reorder inheritance blocks.
 
 
