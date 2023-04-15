@@ -1,5 +1,5 @@
 # OrderBlocks extension for Jinja2
-# Copyright (C) 2016 Graham Bell
+# Copyright (C) 2016-2023 Graham Bell
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -63,7 +63,7 @@ class OrderBlocks(ext.Extension):
                     nodes.Compare(
                         block_name,
                         [nodes.Operand('eq', nodes.Const(node.name))]),
-                    [node], []))
+                    [node], [], []))
 
                 block_names.append(node.name)
 
